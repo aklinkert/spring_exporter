@@ -1,0 +1,12 @@
+package: github.com/KalypsoCloud/jolokia_exporter
+import:
+- package: github.com/prometheus/client_golang
+  subpackages:
+  - prometheus
+  - prometheus/promhttp
+- package: github.com/prometheus/common
+  subpackages:
+  - log
+  - version
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
