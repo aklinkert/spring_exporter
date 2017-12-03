@@ -36,6 +36,8 @@ var exportCmd = &cobra.Command{
 		}
 
 		endpoint := args[0]
+
+		log.Infof("Using basic auth credentials %s:%s to scrape %s (insecure=%v)", basicAuthUser, basicAuthPassword, endpoint, insecure)
 		exp := jolokia.NewExporter("jolokia", insecure, endpoint, basicAuthUser, basicAuthPassword)
 
 		prometheus.MustRegister(exp)
@@ -58,5 +60,5 @@ func init() {
 	exportCmd.Flags().StringVar(&basicAuthUser, "basic-auth-user", "", "HTTP Basic auth user")
 	exportCmd.Flags().StringVar(&basicAuthPassword, "basic-auth-password", "", "HTTP Basic auth password")
 	exportCmd.Flags().StringVarP(&scrapeListen, "listen", "l", ":9321", "Host/Port to listen on")
-	exportCmd.Flags().StringVarP(&scrapeEndpoint, "endpoint", "e", "/listen", "Path to listen on")
+	exportCmd.Flags().StringVarP(&scrapeEndpoint, "endpoint", "e", "/metrics", "Path to listen on")
 }

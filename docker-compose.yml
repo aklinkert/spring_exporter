@@ -1,0 +1,32 @@
+version: "3"
+services:
+  fixtures:
+    build:
+      context: fixtures
+    image: kalypsocloud/jolokia_exporter_test_server
+    ports:
+      - "3000:3000"
+  exporter:
+#    build:
+#      context: .
+    image: kalypsocloud/jolokia_exporter
+    environment:
+      INSECURE: "true"
+      BASIC_AUTH_USER: "admin"
+      BASIC_AUTH_PASSWORD: "secret"
+    command:
+      - "export"
+<<<<<<< Updated upstream
+      - "http://localhost:3000/manage/metrics"
+=======
+      - "http://fixtures:3000/manage/metrics"
+      - "--basic-auth-user"
+      - "admin"
+      - "--basic-auth-password"
+      - "secret"
+      - "--insecure"
+>>>>>>> Stashed changes
+    links:
+      - fixtures
+    ports:
+      - "9321:9321"

@@ -37,6 +37,7 @@ type Exporter struct {
 func NewExporter(namespace string, insecure bool, uri, basicAuthUser, basicAuthPassword string) *Exporter {
 	return &Exporter{
 		URI:               uri,
+		namespace:         namespace,
 		basicAuthUser:     basicAuthUser,
 		basicAuthPassword: basicAuthPassword,
 		up: prometheus.NewDesc(
@@ -99,13 +100,17 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
 		return fmt.Errorf("status %s (%d)", resp.Status, resp.StatusCode)
 	}
 
-	data := jsonData{}
+	var data jsonData
 	if err := json.Unmarshal(body, &data); err != nil {
 		log.Fatal(err)
 	}
 
+	log.Infof("Result has %d rows", len(data))
+
 	for key, value := range data {
 		snakeKey := keyToSnake(key)
+
+		log.Infof("Adding key %s (originally %s) with value %v", snakeKey, key, value)
 
 		ch <- prometheus.MustNewConstMetric(
 			prometheus.NewDesc(
