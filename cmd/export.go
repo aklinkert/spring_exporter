@@ -37,8 +37,9 @@ var exportCmd = &cobra.Command{
 
 		endpoint := args[0]
 
-		log.Infof("Using basic auth credentials %s:%s to scrape %s (insecure=%v)", basicAuthUser, basicAuthPassword, endpoint, insecure)
-		exp := jolokia.NewExporter("jolokia", insecure, endpoint, basicAuthUser, basicAuthPassword)
+		logger := log.Base()
+		logger.SetLevel("warn")
+		exp := jolokia.NewExporter(logger, jolokia.Namespace, insecure, endpoint, basicAuthUser, basicAuthPassword)
 
 		prometheus.MustRegister(exp)
 		prometheus.MustRegister(version.NewCollector("jolokia_exporter"))

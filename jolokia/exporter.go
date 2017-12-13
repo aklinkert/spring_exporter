@@ -22,6 +22,7 @@ var (
 
 // Exporter exports jolokia metrics for prometheus.
 type Exporter struct {
+	logger            log.Logger
 	namespace         string
 	URI               string
 	mutex             sync.Mutex
@@ -34,8 +35,9 @@ type Exporter struct {
 }
 
 // NewExporter returns an initialized Exporter.
-func NewExporter(namespace string, insecure bool, uri, basicAuthUser, basicAuthPassword string) *Exporter {
+func NewExporter(logger log.Logger, namespace string, insecure bool, uri, basicAuthUser, basicAuthPassword string) *Exporter {
 	return &Exporter{
+		logger:            logger,
 		URI:               uri,
 		namespace:         namespace,
 		basicAuthUser:     basicAuthUser,
@@ -74,7 +76,7 @@ type jsonData map[string]float64
 func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
 	req, err := http.NewRequest(http.MethodGet, e.URI, nil)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	req.SetBasicAuth(e.basicAuthUser, e.basicAuthPassword)
@@ -92,25 +94,24 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
 	defer resp.Body.Close()
 	body, readErr := ioutil.ReadAll(resp.Body)
 	if readErr != nil {
-		log.Fatal(readErr)
+		return readErr
 	}
 
 	if resp.StatusCode != 200 {
-		log.Errorf("There was an error, response code is %d, expected 200.", resp.StatusCode)
-		return fmt.Errorf("status %s (%d)", resp.Status, resp.StatusCode)
+		return fmt.Errorf("there was an error, response code is %d, expected 200", resp.StatusCode)
 	}
 
 	var data jsonData
 	if err := json.Unmarshal(body, &data); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
-	log.Infof("Result has %d rows", len(data))
+	e.logger.Infof("Result has %d rows", len(data))
 
 	for key, value := range data {
 		snakeKey := keyToSnake(key)
 
-		log.Infof("Adding key %s (originally %s) with value %v", snakeKey, key, value)
+		e.logger.Infof("Adding key %s (originally %s) with value %v", snakeKey, key, value)
 
 		ch <- prometheus.MustNewConstMetric(
 			prometheus.NewDesc(
@@ -135,7 +136,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	e.mutex.Lock() // To protect metrics from concurrent collects.
 	defer e.mutex.Unlock()
 	if err := e.collect(ch); err != nil {
-		log.Errorf("Error scraping jolokia endpoint: %s", err)
+		e.logger.Errorf("Error scraping jolokia endpoint: %s", err)
 	}
 	return
 }
