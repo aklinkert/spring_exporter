@@ -32,7 +32,7 @@
   "gauge.response.web.auth.login": 252,
   "gauge.response.manage.logfile": 87,
   "gauge.response.manage.health.root": 91,
-  "counter.status.200.manage.jolokia.star-star": 128918,
+  "counter.status.200.manage.spring.star-star": 128918,
   "counter.status.302.web.sso.login.slug": 3,
   "counter.status.200.web.auth.login": 119,
   "counter.status.200.manage.metrics": 128922,

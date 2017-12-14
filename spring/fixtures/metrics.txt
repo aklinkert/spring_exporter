@@ -1,0 +1,120 @@
+# HELP spring_classes classes
+# TYPE spring_classes untyped
+spring_classes 35380
+# HELP spring_classes_loaded classes.loaded
+# TYPE spring_classes_loaded untyped
+spring_classes_loaded 37426
+# HELP spring_classes_unloaded classes.unloaded
+# TYPE spring_classes_unloaded untyped
+spring_classes_unloaded 2046
+# HELP spring_counter_status_200_manage_spring_star_star counter.status.200.manage.spring.star-star
+# TYPE spring_counter_status_200_manage_spring_star_star untyped
+spring_counter_status_200_manage_spring_star_star 128918
+# HELP spring_counter_status_200_manage_metrics counter.status.200.manage.metrics
+# TYPE spring_counter_status_200_manage_metrics untyped
+spring_counter_status_200_manage_metrics 128922
+# HELP spring_counter_status_200_star_public_link_token_deactivate counter.status.200.star.public-link.token.deactivate
+# TYPE spring_counter_status_200_star_public_link_token_deactivate untyped
+spring_counter_status_200_star_public_link_token_deactivate 1
+# HELP spring_counter_status_200_web_auth_login counter.status.200.web.auth.login
+# TYPE spring_counter_status_200_web_auth_login untyped
+spring_counter_status_200_web_auth_login 119
+# HELP spring_counter_status_302_web_sso_login_slug counter.status.302.web.sso.login.slug
+# TYPE spring_counter_status_302_web_sso_login_slug untyped
+spring_counter_status_302_web_sso_login_slug 3
+# HELP spring_datasource_primary_active datasource.primary.active
+# TYPE spring_datasource_primary_active untyped
+spring_datasource_primary_active 0
+# HELP spring_datasource_primary_usage datasource.primary.usage
+# TYPE spring_datasource_primary_usage untyped
+spring_datasource_primary_usage 0
+# HELP spring_gauge_response_manage_health_root gauge.response.manage.health.root
+# TYPE spring_gauge_response_manage_health_root untyped
+spring_gauge_response_manage_health_root 91
+# HELP spring_gauge_response_manage_logfile gauge.response.manage.logfile
+# TYPE spring_gauge_response_manage_logfile untyped
+spring_gauge_response_manage_logfile 87
+# HELP spring_gauge_response_unmapped gauge.response.unmapped
+# TYPE spring_gauge_response_unmapped untyped
+spring_gauge_response_unmapped 6
+# HELP spring_gauge_response_web_auth_login gauge.response.web.auth.login
+# TYPE spring_gauge_response_web_auth_login untyped
+spring_gauge_response_web_auth_login 252
+# HELP spring_gc_ps_marksweep_count gc.ps_marksweep.count
+# TYPE spring_gc_ps_marksweep_count untyped
+spring_gc_ps_marksweep_count 33
+# HELP spring_gc_ps_marksweep_time gc.ps_marksweep.time
+# TYPE spring_gc_ps_marksweep_time untyped
+spring_gc_ps_marksweep_time 26760
+# HELP spring_gc_ps_scavenge_count gc.ps_scavenge.count
+# TYPE spring_gc_ps_scavenge_count untyped
+spring_gc_ps_scavenge_count 32151
+# HELP spring_gc_ps_scavenge_time gc.ps_scavenge.time
+# TYPE spring_gc_ps_scavenge_time untyped
+spring_gc_ps_scavenge_time 494633
+# HELP spring_heap heap
+# TYPE spring_heap untyped
+spring_heap 5.592576e+06
+# HELP spring_heap_committed heap.committed
+# TYPE spring_heap_committed untyped
+spring_heap_committed 326656
+# HELP spring_heap_init heap.init
+# TYPE spring_heap_init untyped
+spring_heap_init 63488
+# HELP spring_heap_used heap.used
+# TYPE spring_heap_used untyped
+spring_heap_used 275012
+# HELP spring_httpsessions_active httpsessions.active
+# TYPE spring_httpsessions_active untyped
+spring_httpsessions_active 0
+# HELP spring_httpsessions_max httpsessions.max
+# TYPE spring_httpsessions_max untyped
+spring_httpsessions_max -1
+# HELP spring_instance_uptime instance.uptime
+# TYPE spring_instance_uptime untyped
+spring_instance_uptime 1.289184982e+09
+# HELP spring_mem mem
+# TYPE spring_mem untyped
+spring_mem 689539
+# HELP spring_mem_free mem.free
+# TYPE spring_mem_free untyped
+spring_mem_free 51643
+# HELP spring_nonheap nonheap
+# TYPE spring_nonheap untyped
+spring_nonheap 0
+# HELP spring_nonheap_committed nonheap.committed
+# TYPE spring_nonheap_committed untyped
+spring_nonheap_committed 379328
+# HELP spring_nonheap_init nonheap.init
+# TYPE spring_nonheap_init untyped
+spring_nonheap_init 2496
+# HELP spring_nonheap_used nonheap.used
+# TYPE spring_nonheap_used untyped
+spring_nonheap_used 362883
+# HELP spring_processors processors
+# TYPE spring_processors untyped
+spring_processors 4
+# HELP spring_response_duration How long the spring endpoint took to deliver the metrics
+# TYPE spring_response_duration gauge
+spring_response_duration 0.000359039
+# HELP spring_systemload_average systemload.average
+# TYPE spring_systemload_average untyped
+spring_systemload_average 1.57
+# HELP spring_threads threads
+# TYPE spring_threads untyped
+spring_threads 221
+# HELP spring_threads_daemon threads.daemon
+# TYPE spring_threads_daemon untyped
+spring_threads_daemon 57
+# HELP spring_threads_peak threads.peak
+# TYPE spring_threads_peak untyped
+spring_threads_peak 226
+# HELP spring_threads_totalStarted threads.totalStarted
+# TYPE spring_threads_totalStarted untyped
+spring_threads_totalStarted 343434
+# HELP spring_up Could spring endpoint be reached
+# TYPE spring_up gauge
+spring_up 1
+# HELP spring_uptime uptime
+# TYPE spring_uptime untyped
+spring_uptime

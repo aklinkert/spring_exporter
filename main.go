@@ -2,7 +2,7 @@
 
 package main
 
-import "github.com/KalypsoCloud/jolokia_exporter/cmd"
+import "github.com/KalypsoCloud/spring_exporter/cmd"
 
 func main() {
 	cmd.Execute()

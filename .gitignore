@@ -1,4 +1,4 @@
 vendor
 .env
-jolokia_exporter
+spring_exporter
 bin

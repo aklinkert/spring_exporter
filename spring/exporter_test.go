@@ -1,4 +1,4 @@
-package jolokia
+package spring
 
 import (
 	"io/ioutil"
@@ -61,12 +61,12 @@ func TestExporter_Describe(t *testing.T) {
 	}
 
 	up := <-c
-	if up.String() != "Desc{fqName: \"jolokia_up\", help: \"Could jolokia endpoint be reached\", constLabels: {}, variableLabels: []}" {
+	if up.String() != "Desc{fqName: \"spring_up\", help: \"Could spring endpoint be reached\", constLabels: {}, variableLabels: []}" {
 		t.Errorf("Unexpected up metric description: %s", up.String())
 	}
 
 	duration := <-c
-	if duration.String() != "Desc{fqName: \"jolokia_response_duration\", help: \"How long the jolokia endpoint took to deliver the metrics\", constLabels: {}, variableLabels: []}" {
+	if duration.String() != "Desc{fqName: \"spring_response_duration\", help: \"How long the spring endpoint took to deliver the metrics\", constLabels: {}, variableLabels: []}" {
 		t.Errorf("Unexpected duration metric description: %s", duration.String())
 	}
 }
@@ -125,7 +125,7 @@ func TestExporter_Collect_WithAuthButNoneGiven(t *testing.T) {
 	exp.Collect(c)
 
 	bufStr := buf.String()
-	if ! strings.Contains(bufStr, "Error scraping jolokia endpoint: there was an error, response code is 401, expected 200") {
+	if ! strings.Contains(bufStr, "Error scraping spring endpoint: there was an error, response code is 401, expected 200") {
 		t.Fatalf("unexpect collect output: %v", bufStr)
 	}
 }
@@ -142,7 +142,7 @@ func TestExporter_Collect_WithAuthButWrongGiven(t *testing.T) {
 	exp.Collect(c)
 
 	bufStr := buf.String()
-	if ! strings.Contains(bufStr, "Error scraping jolokia endpoint: there was an error, response code is 401, expected 200") {
+	if ! strings.Contains(bufStr, "Error scraping spring endpoint: there was an error, response code is 401, expected 200") {
 		t.Fatalf("unexpect collect output: %v", bufStr)
 	}
 }

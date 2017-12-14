@@ -3,25 +3,23 @@ services:
   fixtures:
     build:
       context: fixtures
-    image: kalypsocloud/jolokia_exporter_test_server
+    image: kalypsocloud/spring_exporter_test_server
     ports:
       - "3000:3000"
   exporter:
 #    build:
 #      context: .
-    image: kalypsocloud/jolokia_exporter
+    image: kalypsocloud/spring_exporter
     environment:
       INSECURE: "true"
       BASIC_AUTH_USER: "admin"
       BASIC_AUTH_PASSWORD: "secret"
-    command:
-      - "export"
-      - "http://fixtures:3000/manage/metrics"
-      - "--basic-auth-user"
-      - "admin"
-      - "--basic-auth-password"
-      - "secret"
-      - "--insecure"
+    command: [
+      "export", "http://fixtures:3000/manage/metrics",
+      "--basic-auth-user", "admin",
+      "--basic-auth-password", "secret",
+      "--insecure"
+    ]
     links:
       - fixtures
     ports:

@@ -1,4 +1,4 @@
-package: github.com/KalypsoCloud/jolokia_exporter
+package: github.com/KalypsoCloud/spring_exporter
 import:
 - package: github.com/prometheus/client_golang
   subpackages:

@@ -8,7 +8,7 @@ import (
 
 	"os"
 
-	"github.com/KalypsoCloud/jolokia_exporter/jolokia"
+	"github.com/KalypsoCloud/spring_exporter/spring"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
@@ -26,7 +26,7 @@ var (
 
 // exportCmd represents the export command
 var exportCmd = &cobra.Command{
-	Use:   "export <jolokia-endpoint>",
+	Use:   "export <spring-endpoint>",
 	Short: "Export metrics",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -39,13 +39,13 @@ var exportCmd = &cobra.Command{
 
 		logger := log.Base()
 		logger.SetLevel("warn")
-		exp := jolokia.NewExporter(logger, jolokia.Namespace, insecure, endpoint, basicAuthUser, basicAuthPassword)
+		exp := spring.NewExporter(logger, spring.Namespace, insecure, endpoint, basicAuthUser, basicAuthPassword)
 
 		prometheus.MustRegister(exp)
-		prometheus.MustRegister(version.NewCollector("jolokia_exporter"))
+		prometheus.MustRegister(version.NewCollector("spring_exporter"))
 
-		log.Infof("Exporting jolokia endpoint: %v", endpoint)
-		log.Info("Starting jolokia_exporter", version.Info())
+		log.Infof("Exporting spring endpoint: %v", endpoint)
+		log.Info("Starting spring_exporter", version.Info())
 		log.Info("Build context", version.BuildContext())
 		log.Infof("Starting Server: %s", scrapeListen)
 

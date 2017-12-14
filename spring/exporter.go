@@ -1,4 +1,4 @@
-package jolokia
+package spring
 
 import (
 	"encoding/json"
@@ -20,7 +20,7 @@ var (
 	keyRegExp = regexp.MustCompile("[^a-zA-Z0-9:_]")
 )
 
-// Exporter exports jolokia metrics for prometheus.
+// Exporter exports spring metrics for prometheus.
 type Exporter struct {
 	logger            log.Logger
 	namespace         string
@@ -44,12 +44,12 @@ func NewExporter(logger log.Logger, namespace string, insecure bool, uri, basicA
 		basicAuthPassword: basicAuthPassword,
 		up: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "up"),
-			"Could jolokia endpoint be reached",
+			"Could spring endpoint be reached",
 			nil,
 			nil),
 		duration: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "response_duration"),
-			"How long the jolokia endpoint took to deliver the metrics",
+			"How long the spring endpoint took to deliver the metrics",
 			nil,
 			nil),
 		client: &http.Client{
@@ -60,14 +60,14 @@ func NewExporter(logger log.Logger, namespace string, insecure bool, uri, basicA
 	}
 }
 
-// Describe describes all the metrics ever exported by the jolokia endpoint exporter. It
+// Describe describes all the metrics ever exported by the spring endpoint exporter. It
 // implements prometheus.Collector.
 func (e *Exporter) Describe(ch chan<- *prometheus.Desc) {
 	ch <- e.up
 	ch <- e.duration
 }
 
-// json data structure for jolokia endpoint
+// json data structure for spring endpoint
 type jsonData map[string]float64
 
 // Collect fetches the stats from configured location and delivers them
@@ -87,7 +87,7 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
 
 	if err != nil {
 		ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 0)
-		return fmt.Errorf("error scraping jolokia endpoint: %v", err)
+		return fmt.Errorf("error scraping spring endpoint: %v", err)
 	}
 	ch <- prometheus.MustNewConstMetric(e.up, prometheus.GaugeValue, 1)
 
@@ -136,7 +136,7 @@ func (e *Exporter) Collect(ch chan<- prometheus.Metric) {
 	e.mutex.Lock() // To protect metrics from concurrent collects.
 	defer e.mutex.Unlock()
 	if err := e.collect(ch); err != nil {
-		e.logger.Errorf("Error scraping jolokia endpoint: %s", err)
+		e.logger.Errorf("Error scraping spring endpoint: %s", err)
 	}
 	return
 }

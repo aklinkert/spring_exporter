@@ -14,8 +14,8 @@ var cfgFile string
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
-	Use:   "jolokia_exporter",
-	Short: "Exports jolokia metrics for prometheus",
+	Use:   "spring_exporter",
+	Short: "Exports spring metrics for prometheus",
 	Long:  ``,
 }
 
@@ -30,7 +30,7 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.jolokia_exporter.yaml)")
+	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.spring_exporter.yaml)")
 	RootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
@@ -40,7 +40,7 @@ func initConfig() {
 		viper.SetConfigFile(cfgFile)
 	}
 
-	viper.SetConfigName(".jolokia_exporter")
+	viper.SetConfigName(".spring_exporter")
 	viper.AddConfigPath("$HOME")
 	viper.AutomaticEnv()
 
