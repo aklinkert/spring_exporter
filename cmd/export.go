@@ -27,7 +27,7 @@ var (
 // exportCmd represents the export command
 var exportCmd = &cobra.Command{
 	Use:   "export <spring-endpoint>",
-	Short: "Export metrics",
+	Short: "Exports spring actuator metrics from given endpoint",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {
@@ -57,9 +57,9 @@ var exportCmd = &cobra.Command{
 func init() {
 	RootCmd.AddCommand(exportCmd)
 
-	exportCmd.Flags().BoolVarP(&insecure, "insecure", "i", false, "Insecure https mode")
-	exportCmd.Flags().StringVar(&basicAuthUser, "basic-auth-user", "", "HTTP Basic auth user")
-	exportCmd.Flags().StringVar(&basicAuthPassword, "basic-auth-password", "", "HTTP Basic auth password")
-	exportCmd.Flags().StringVarP(&scrapeListen, "listen", "l", ":9321", "Host/Port to listen on")
-	exportCmd.Flags().StringVarP(&scrapeEndpoint, "endpoint", "e", "/metrics", "Path to listen on")
+	exportCmd.Flags().BoolVarP(&insecure, "insecure", "i", false, "Weather to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)")
+	exportCmd.Flags().StringVar(&basicAuthUser, "basic-auth-user", "", "HTTP Basic auth user for authentication on the spring endpoint")
+	exportCmd.Flags().StringVar(&basicAuthPassword, "basic-auth-password", "", "HTTP Basic auth password for authentication on the spring endpoint")
+	exportCmd.Flags().StringVarP(&scrapeListen, "listen", "l", ":9321", "Host/Port the exporter should listen listen on")
+	exportCmd.Flags().StringVarP(&scrapeEndpoint, "endpoint", "e", "/metrics", "Path the exporter should listen listen on")
 }
