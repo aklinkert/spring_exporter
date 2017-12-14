@@ -57,7 +57,7 @@ var exportCmd = &cobra.Command{
 func init() {
 	RootCmd.AddCommand(exportCmd)
 
-	exportCmd.Flags().BoolVarP(&insecure, "insecure", "i", false, "Weather to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)")
+	exportCmd.Flags().BoolVarP(&insecure, "insecure", "i", false, "Whether to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)")
 	exportCmd.Flags().StringVar(&basicAuthUser, "basic-auth-user", "", "HTTP Basic auth user for authentication on the spring endpoint")
 	exportCmd.Flags().StringVar(&basicAuthPassword, "basic-auth-password", "", "HTTP Basic auth password for authentication on the spring endpoint")
 	exportCmd.Flags().StringVarP(&scrapeListen, "listen", "l", ":9321", "Host/Port the exporter should listen listen on")

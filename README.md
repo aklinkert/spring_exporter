@@ -23,7 +23,7 @@ Flags:
       --basic-auth-user string       HTTP Basic auth user for authentication on the spring endpoint
   -e, --endpoint string              Path the exporter should listen listen on (default "/metrics")
   -h, --help                         help for export
-  -i, --insecure                     Weather to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)
+  -i, --insecure                     Whether to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)
   -l, --listen string                Host/Port the exporter should listen listen on (default ":9321")
 
 Global Flags:
