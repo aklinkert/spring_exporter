@@ -5,7 +5,7 @@ the [spring metrics actuator](https://docs.spring.io/spring-boot/docs/current/re
 
 # docker image
 
-There is an automatically build docker image out there: [kalypsocloud/spring_exporter](https://hub.docker.com/r/kalypsocloud/spring_exporter/)
+There is an automatically build docker image out there: [scalify/spring_exporter](https://hub.docker.com/r/scalify/spring_exporter/)
 
 # usage
 
@@ -38,13 +38,13 @@ services:
   fixtures:
     build:
       context: fixtures
-    image: kalypsocloud/spring_exporter_test_server
+    image: scalify/spring_exporter_test_server
     ports:
       - "3000:3000"
   exporter:
     build:
       context: .
-    image: kalypsocloud/spring_exporter
+    image: scalify/spring_exporter
     command: [
       "export", "http://fixtures:3000/manage/metrics",
       "--basic-auth-user", "admin",
@@ -61,4 +61,4 @@ services:
 
 MIT License
 
-Copyright (c) 2017 KalypsoCloud GmbH
+Copyright (c) 2017 scalify GmbH

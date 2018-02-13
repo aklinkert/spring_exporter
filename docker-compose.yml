@@ -3,13 +3,13 @@ services:
   fixtures:
     build:
       context: fixtures
-    image: kalypsocloud/spring_exporter_test_server
+    image: scalify/spring_exporter_test_server
     ports:
       - "3000:3000"
   exporter:
-#    build:
-#      context: .
-    image: kalypsocloud/spring_exporter
+    build:
+      context: .
+    image: scalify/spring_exporter
     environment:
       INSECURE: "true"
       BASIC_AUTH_USER: "admin"

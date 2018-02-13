@@ -8,7 +8,7 @@ import (
 
 	"os"
 
-	"github.com/KalypsoCloud/spring_exporter/spring"
+	"github.com/scalify/spring_exporter/spring"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/log"
