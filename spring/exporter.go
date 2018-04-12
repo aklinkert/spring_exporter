@@ -106,12 +106,12 @@ func (e *Exporter) collect(ch chan<- prometheus.Metric) error {
 		return err
 	}
 
-	e.logger.Infof("Result has %d rows", len(data))
+	e.logger.Debugf("Result has %d rows", len(data))
 
 	for key, value := range data {
 		snakeKey := keyToSnake(key)
 
-		e.logger.Infof("Adding key %s (originally %s) with value %v", snakeKey, key, value)
+		e.logger.Debugf("Adding key %s (originally %s) with value %v", snakeKey, key, value)
 
 		ch <- prometheus.MustNewConstMetric(
 			prometheus.NewDesc(

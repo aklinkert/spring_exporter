@@ -17,6 +17,7 @@ import (
 )
 
 var (
+	verbose           bool
 	insecure          bool
 	basicAuthUser     string
 	basicAuthPassword string
@@ -38,7 +39,12 @@ var exportCmd = &cobra.Command{
 		endpoint := args[0]
 
 		logger := log.Base()
-		logger.SetLevel("warn")
+		if verbose {
+			logger.SetLevel("debug")
+			logger.Debug("Starting in debug level")
+		} else {
+			logger.SetLevel("info")
+		}
 		exp := spring.NewExporter(logger, spring.Namespace, insecure, endpoint, basicAuthUser, basicAuthPassword)
 
 		prometheus.MustRegister(exp)
@@ -57,6 +63,7 @@ var exportCmd = &cobra.Command{
 func init() {
 	RootCmd.AddCommand(exportCmd)
 
+	exportCmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "Whether to be verbose")
 	exportCmd.Flags().BoolVarP(&insecure, "insecure", "i", false, "Whether to use insecure https mode, i.e. skip ssl cert validation (only useful with https endpoint)")
 	exportCmd.Flags().StringVar(&basicAuthUser, "basic-auth-user", "", "HTTP Basic auth user for authentication on the spring endpoint")
 	exportCmd.Flags().StringVar(&basicAuthPassword, "basic-auth-password", "", "HTTP Basic auth password for authentication on the spring endpoint")
